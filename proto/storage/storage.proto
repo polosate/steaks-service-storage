@@ -1,4 +1,4 @@
-// steaks-service-storage/proto/user/storage.proto
+// steaks-service-storage/proto/storage/storage.proto
 syntax = "proto3";
 
 package storage;

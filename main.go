@@ -10,7 +10,7 @@ import (
 )
 
 type Repository interface {
-	FindAvailable(*pb.Specification) (*pb.Vessel, error)
+	FindAvailable(*pb.Specification) (*pb.Storage, error)
 }
 
 type VesselRepository struct {
