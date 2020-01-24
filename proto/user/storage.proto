@@ -1,0 +1,27 @@
+// steaks-service-storage/proto/user/storage.proto
+syntax = "proto3";
+
+package storage;
+
+service StorageService {
+    rpc FindAvailable(Specification) returns (Response) {}
+}
+
+message Storage {
+    int32 id = 1;
+    int32 capacity = 2;
+    int32 max_weight = 3;
+    string name = 4;
+    bool available = 5;
+    string owner_id = 6;
+}
+
+message Specification {
+    int32 capacity = 1;
+    int32 max_weight = 2;
+}
+
+message Response {
+    Storage storage = 1;
+    repeated Storage storages = 2;
+}
