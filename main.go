@@ -5,28 +5,25 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	pb "github.com/polosate/steaks-service-storage/proto/storage"
 	"github.com/micro/go-micro"
+	pb "github.com/polosate/steaks-service-storage/proto/storage"
 )
 
-type Repository interface {
+type repository interface {
 	FindAvailable(*pb.Specification) (*pb.Storage, error)
 }
 
-type VesselRepository struct {
-	vessels []*pb.Vessel
+type StorageRepository struct {
+	storages []*pb.Storage
 }
 
-// FindAvailable - checks a specification against a map of vessels,
-// if capacity and max weight are below a vessels capacity and max weight,
-// then return that vessel.
-func (repo *VesselRepository) FindAvailable(spec *pb.Specification) (*pb.Vessel, error) {
-	for _, vessel := range repo.vessels {
-		if spec.Capacity <= vessel.Capacity && spec.MaxWeight <= vessel.MaxWeight {
-			return vessel, nil
+func (repo *StorageRepository) FindAvailable(spec *pb.Specification) (*pb.Storage, error) {
+	for _, storage := range repo.storages {
+		if spec.Capacity <= storage.Capacity {
+			return storage, nil
 		}
 	}
-	return nil, errors.New("No vessel found by that spec")
+	return nil, errors.New("No storage found by that spec.")
 }
 
 // Our grpc service handler
@@ -36,31 +33,31 @@ type service struct {
 
 func (s *service) FindAvailable(ctx context.Context, req *pb.Specification, res *pb.Response) error {
 
-	// Find the next available vessel
-	vessel, err := s.repo.FindAvailable(req)
+	storage, err := s.repo.FindAvailable(req)
 	if err != nil {
 		return err
 	}
 
-	// Set the vessel as part of the response message type
-	res.Vessel = vessel
+	res.Storage = storage
 	return nil
 }
 
 func main() {
-	vessels := []*pb.Vessel{
-		&pb.Vessel{Id: "vessel001", Name: "Boaty McBoatface", MaxWeight: 200000, Capacity: 500},
+	storages := []*pb.Storage{
+		{Id: 0, Name: "Storage 00", Capacity: 0},
+		{Id: 1, Name: "Storage 01", Capacity: 1},
+		{Id: 2, Name: "Storage 02", Capacity: 2},
 	}
-	repo := &VesselRepository{vessels}
+	repo := &StorageRepository{storages}
 
 	srv := micro.NewService(
-		micro.Name("shippy.service.vessel"),
+		micro.Name("steaks.service.storages"),
 	)
 
 	srv.Init()
 
 	// Register our implementation with
-	pb.RegisterVesselServiceHandler(srv.Server(), &service{repo})
+	pb.RegisterStorageServiceHandler(srv.Server(), &service{repo})
 
 	if err := srv.Run(); err != nil {
 		fmt.Println(err)
