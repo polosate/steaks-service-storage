@@ -1,51 +1,31 @@
-// steaks-service-storage/main.go
+// storage-service/main.go
 package main
 
 import (
 	"context"
-	"errors"
+	"os"
+
 	"fmt"
 	"github.com/micro/go-micro"
 	pb "github.com/polosate/storage-service/proto/storage"
+	"log"
 )
 
-type repository interface {
-	FindAvailable(*pb.Specification) (*pb.Storage, error)
-}
+const (
+	defaultHost = "datastore:27017"
+)
 
-type StorageRepository struct {
-	storages []*pb.Storage
-}
-
-func (repo *StorageRepository) FindAvailable(spec *pb.Specification) (*pb.Storage, error) {
-	for _, storage := range repo.storages {
-		if spec.Capacity <= storage.Capacity {
-			return storage, nil
-		}
+func createDummyData(repo repository) {
+	storages := []*Storage{
+		{Id: 0, Name: "Storage_00", Available: true, Capacity: 0, OwnerId: "qwe"},
+		{Id: 1, Name: "Storage_01", Available: true, Capacity: 1, OwnerId: "qwe"},
 	}
-	return nil, errors.New("No storage found by that spec.")
-}
-
-// Our grpc service handler
-type service struct {
-	repo repository
-}
-
-func (s *service) FindAvailable(ctx context.Context, req *pb.Specification, res *pb.Response) error {
-	storage, err := s.repo.FindAvailable(req)
-	if err != nil {
-		return err
+	for _, v := range storages {
+		repo.Create(context.Background(), v)
 	}
-
-	res.Storage = storage
-	return nil
 }
 
 func main() {
-	storages := []*pb.Storage{
-		&pb.Storage{Id: 1, Name: "Storage 01", Capacity: 1},
-	}
-	repo := &StorageRepository{storages}
 
 	srv := micro.NewService(
 		micro.Name("steaks.storage.service"),
@@ -53,9 +33,29 @@ func main() {
 
 	srv.Init()
 
-	// Register our implementation with
-	pb.RegisterStorageServiceHandler(srv.Server(), &service{repo})
+	uri := os.Getenv("DB_HOST")
+	if uri == "" {
+		uri = defaultHost
+	}
 
+	client, err := CreateClient(context.Background(), uri, 0)
+	if err != nil {
+		log.Panic(err)
+	}
+	defer client.Disconnect(context.Background())
+
+	storagesCollection := client.Database("steaks").Collection("storages")
+
+	repository := &StorageRepository{storagesCollection}
+
+	createDummyData(repository)
+
+	h := &handler{repository}
+
+	// Register handlers
+	pb.RegisterStorageServiceHandler(srv.Server(), h)
+
+	// Run the server
 	if err := srv.Run(); err != nil {
 		fmt.Println(err)
 	}

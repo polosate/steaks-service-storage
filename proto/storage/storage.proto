@@ -5,6 +5,7 @@ package steaks.storage.service;
 
 service StorageService {
     rpc FindAvailable(Specification) returns (Response) {}
+    rpc Create(Storage) returns (Response) {}
 }
 
 message Storage {
@@ -22,4 +23,5 @@ message Specification {
 message Response {
     Storage storage = 1;
     repeated Storage storages = 2;
+    bool created = 3;
 }

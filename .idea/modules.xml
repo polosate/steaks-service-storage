@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../steaks-service-storage/.idea/steaks-service-storage.iml" filepath="$PROJECT_DIR$/../steaks-service-storage/.idea/steaks-service-storage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../steaks-service-storage/.idea/storage-service.iml" filepath="$PROJECT_DIR$/../steaks-service-storage/.idea/storage-service.iml" />
     </modules>
   </component>
 </project>
