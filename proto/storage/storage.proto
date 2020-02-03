@@ -1,7 +1,7 @@
 // steaks-service-storage/proto/storage/storage.proto
 syntax = "proto3";
 
-package storage;
+package steaks.storage.service;
 
 service StorageService {
     rpc FindAvailable(Specification) returns (Response) {}

@@ -6,7 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/micro/go-micro"
-	pb "github.com/polosate/steaks-service-storage/proto/storage"
+	pb "github.com/polosate/storage-service/proto/storage"
 )
 
 type repository interface {
@@ -32,7 +32,6 @@ type service struct {
 }
 
 func (s *service) FindAvailable(ctx context.Context, req *pb.Specification, res *pb.Response) error {
-
 	storage, err := s.repo.FindAvailable(req)
 	if err != nil {
 		return err
@@ -44,14 +43,12 @@ func (s *service) FindAvailable(ctx context.Context, req *pb.Specification, res 
 
 func main() {
 	storages := []*pb.Storage{
-		{Id: 0, Name: "Storage 00", Capacity: 0},
-		{Id: 1, Name: "Storage 01", Capacity: 1},
-		{Id: 2, Name: "Storage 02", Capacity: 2},
+		&pb.Storage{Id: 1, Name: "Storage 01", Capacity: 1},
 	}
 	repo := &StorageRepository{storages}
 
 	srv := micro.NewService(
-		micro.Name("steaks.service.storages"),
+		micro.Name("steaks.storage.service"),
 	)
 
 	srv.Init()
