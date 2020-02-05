@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+
 	pb "github.com/polosate/storage-service/proto/storage"
 )
 
@@ -10,7 +11,6 @@ type handler struct {
 }
 
 func (s *handler) FindAvailable(ctx context.Context, req *pb.Specification, res *pb.Response) error {
-
 	storage, err := s.repository.FindAvailable(ctx, MarshalSpecification(req))
 
 	if err != nil {

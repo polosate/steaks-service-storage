@@ -1,13 +1,13 @@
 // storage-service/repository.go
 package main
 
-
 import (
 	"context"
+	"fmt"
 	pb "github.com/polosate/storage-service/proto/storage"
-	"go.mongodb.org/mongo-driver/mongo"
-
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
+	"log"
 )
 
 type Storage struct {
@@ -66,17 +66,21 @@ func (repository *StorageRepository) Create(ctx context.Context, storage *Storag
 
 
 func (repository *StorageRepository) FindAvailable(ctx context.Context, spec *Specification) (*Storage, error) {
-	filter := bson.D{{
-		"capacity",
-		bson.D{{
-			"$lte",
-			spec.Capacity,
+	filter := bson.D{
+		{
+			"capacity",
+			bson.D{
+				{
+					"$lte",
+					spec.Capacity},
+			},
 		},
-		},
-	}}
+	}
 	storage := &Storage{}
 	if err := repository.collection.FindOne(ctx, filter).Decode(storage); err != nil {
+		log.Printf("Could not create a product: %v", err)
 		return nil, err
 	}
+	fmt.Printf("STORAGE, %v", storage.Name)
 	return storage, nil
 }

@@ -1,4 +1,4 @@
-// storage-servicet/datastore.go
+// storage-service/datastore.go
 package main
 
 import (
@@ -11,6 +11,9 @@ import (
 // CreateClient -
 func CreateClient(ctx context.Context, uri string, retry int32) (*mongo.Client, error) {
 	conn, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
+	if err != nil {
+		return nil , err
+	}
 	if err := conn.Ping(ctx, nil); err != nil {
 		if retry >= 3 {
 			return nil, err

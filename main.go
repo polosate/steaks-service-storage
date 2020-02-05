@@ -17,8 +17,8 @@ const (
 
 func createDummyData(repo repository) {
 	storages := []*Storage{
-		{Id: 0, Name: "Storage_00", Available: true, Capacity: 0, OwnerId: "qwe"},
-		{Id: 1, Name: "Storage_01", Available: true, Capacity: 1, OwnerId: "qwe"},
+		{Id: 0, Name: "Storage_00", Available: true, Capacity: 1, OwnerId: "qwe"},
+		{Id: 1, Name: "Storage_01", Available: true, Capacity: 2, OwnerId: "asd"},
 	}
 	for _, v := range storages {
 		repo.Create(context.Background(), v)

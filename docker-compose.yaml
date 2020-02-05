@@ -1,0 +1,39 @@
+version: '3.5'
+
+services:
+  storage-service:
+    restart: always
+    container_name: "storage-service"
+    build: .
+    ports:
+      - 50052
+    links:
+      - datastore
+    depends_on:
+      - datastore
+    networks:
+      - storage-tier
+      - steaks-backend-tier
+    environment:
+      DB_HOST: "mongodb://datastore:27017"
+      MICRO_ADDRESS: ":50052"
+
+  datastore:
+    image: mongo:latest
+    container_name: "datastore"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/db:/data/db
+    networks:
+      - storage-tier
+    ports:
+      - 27017
+    command: mongod --logpath=/dev/null
+
+networks:
+  storage-tier:
+    name: storage-tier
+  steaks-backend-tier:
+    name: steaks-backend-tier

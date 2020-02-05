@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a15ccb4e-1fcf-4578-8275-9297a207c335" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/datastore.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proto/storage/storage.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/proto/storage/storage.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proto/storage/storage.proto" beforeDir="false" afterPath="$PROJECT_DIR$/proto/storage/storage.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage-service" beforeDir="false" afterPath="$PROJECT_DIR$/storage-service" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datastore.go" beforeDir="false" afterPath="$PROJECT_DIR$/datastore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/repository.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,14 +47,19 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="goland.project.structure" />
+    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../product-cli" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
@@ -73,6 +70,17 @@
       <filePath value="$PROJECT_DIR$/" />
       <package value="steaks-service-user" />
       <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestCli in steaks/product-cli" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="storage-service" />
+      <working_directory value="$PROJECT_DIR$/../product-cli" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="steaks/product-cli" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestCli$" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
@@ -86,6 +94,11 @@
       <filePath value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestCli in steaks/product-cli" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -117,13 +130,49 @@
       <screen x="59" y="24" width="1861" height="1056" />
     </state>
     <state x="589" y="200" key="#Go_Modules_(vgo)/59.24.1861.1056@59.24.1861.1056" timestamp="1579883929505" />
-    <state x="777" y="297" key="FileChooserDialogImpl" timestamp="1580726730396">
+    <state x="687" y="344" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1580894509597">
       <screen x="59" y="24" width="1861" height="1056" />
     </state>
-    <state x="777" y="297" key="FileChooserDialogImpl/59.24.1861.1056@59.24.1861.1056" timestamp="1580726730396" />
-    <state x="482" y="173" key="SettingsEditor" timestamp="1580726741479">
+    <state x="687" y="344" key="#com.intellij.fileTypes.FileTypeChooser/59.24.1861.1056@59.24.1861.1056" timestamp="1580894509597" />
+    <state x="777" y="297" width="424" height="482" key="FileChooserDialogImpl" timestamp="1580903123233">
       <screen x="59" y="24" width="1861" height="1056" />
     </state>
-    <state x="482" y="173" key="SettingsEditor/59.24.1861.1056@59.24.1861.1056" timestamp="1580726741479" />
+    <state x="777" y="297" width="424" height="482" key="FileChooserDialogImpl/59.24.1861.1056@59.24.1861.1056" timestamp="1580903123233" />
+    <state width="1815" height="559" key="GridCell.Tab.0.bottom" timestamp="1580889910151">
+      <screen x="59" y="24" width="1861" height="1056" />
+    </state>
+    <state width="1815" height="559" key="GridCell.Tab.0.bottom/59.24.1861.1056@59.24.1861.1056" timestamp="1580889910151" />
+    <state width="1815" height="559" key="GridCell.Tab.0.center" timestamp="1580889910150">
+      <screen x="59" y="24" width="1861" height="1056" />
+    </state>
+    <state width="1815" height="559" key="GridCell.Tab.0.center/59.24.1861.1056@59.24.1861.1056" timestamp="1580889910150" />
+    <state width="1815" height="559" key="GridCell.Tab.0.left" timestamp="1580889910149">
+      <screen x="59" y="24" width="1861" height="1056" />
+    </state>
+    <state width="1815" height="559" key="GridCell.Tab.0.left/59.24.1861.1056@59.24.1861.1056" timestamp="1580889910149" />
+    <state width="1815" height="559" key="GridCell.Tab.0.right" timestamp="1580889910150">
+      <screen x="59" y="24" width="1861" height="1056" />
+    </state>
+    <state width="1815" height="559" key="GridCell.Tab.0.right/59.24.1861.1056@59.24.1861.1056" timestamp="1580889910150" />
+    <state width="1815" height="559" key="GridCell.Tab.1.bottom" timestamp="1580889910153">
+      <screen x="59" y="24" width="1861" height="1056" />
+    </state>
+    <state width="1815" height="559" key="GridCell.Tab.1.bottom/59.24.1861.1056@59.24.1861.1056" timestamp="1580889910153" />
+    <state width="1815" height="559" key="GridCell.Tab.1.center" timestamp="1580889910152">
+      <screen x="59" y="24" width="1861" height="1056" />
+    </state>
+    <state width="1815" height="559" key="GridCell.Tab.1.center/59.24.1861.1056@59.24.1861.1056" timestamp="1580889910152" />
+    <state width="1815" height="559" key="GridCell.Tab.1.left" timestamp="1580889910152">
+      <screen x="59" y="24" width="1861" height="1056" />
+    </state>
+    <state width="1815" height="559" key="GridCell.Tab.1.left/59.24.1861.1056@59.24.1861.1056" timestamp="1580889910152" />
+    <state width="1815" height="559" key="GridCell.Tab.1.right" timestamp="1580889910152">
+      <screen x="59" y="24" width="1861" height="1056" />
+    </state>
+    <state width="1815" height="559" key="GridCell.Tab.1.right/59.24.1861.1056@59.24.1861.1056" timestamp="1580889910152" />
+    <state x="482" y="173" key="SettingsEditor" timestamp="1580889877049">
+      <screen x="59" y="24" width="1861" height="1056" />
+    </state>
+    <state x="482" y="173" key="SettingsEditor/59.24.1861.1056@59.24.1861.1056" timestamp="1580889877049" />
   </component>
 </project>
